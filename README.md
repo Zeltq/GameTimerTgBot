@@ -32,7 +32,7 @@ ADMIN_ID = YOUR_TELEGRAM_USER_ID  # Ваш Telegram ID
 
 ```bash
    python -m venv .env
-   .env\Scripts\activate  # для Windows
+   .\.env\Scripts\activate  # для Windows
    pip install -r requirements.txt
    ```
 

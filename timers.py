@@ -82,7 +82,8 @@ async def update_timer_message(force=False):
             )
             prev_states[chat_id] = current_state
         except Exception as e:
-            logger.error(f"Ошибка обновления сообщения для {chat_id}: {e}")
+            # logger.error(f"Ошибка обновления сообщения для {chat_id}: {e}")
+            pass
 
 async def handle_callback(data: str):
     logger.info(f"Processing callback: {data}")

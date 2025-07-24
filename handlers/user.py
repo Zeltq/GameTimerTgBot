@@ -14,7 +14,7 @@ router = Router()
 @router.message(F.text == "/start")
 async def cmd_start(msg: Message, state: FSMContext):
     await delete_user_by_id(msg.from_user.id)
-    await msg.answer("Введите ваше имя (одно слово, до 11 символов):")
+    await msg.answer("Введите ваше имя (одно слово, до 11 символов (ru, eng only)):")
     await state.set_state(Registration.waiting_for_name)
 
 @router.message(Registration.waiting_for_name)

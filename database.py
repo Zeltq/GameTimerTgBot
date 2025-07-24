@@ -23,13 +23,17 @@ async def init_db():
         await db.commit()
 
 async def add_user(user_id, name):
-    default_time = 7200  # 120 минут
     async with aiosqlite.connect(DB_PATH) as db:
+        async with db.execute("SELECT user_id FROM users WHERE name = ? AND active = 1", (name,)) as cursor:
+            if await cursor.fetchone():
+                return False  # Имя уже занято
+        default_time = 7200  # 120 минут
         await db.execute("""
             INSERT OR REPLACE INTO users (user_id, name, time_left, active)
             VALUES (?, ?, ?, 1)
         """, (user_id, name, default_time))
         await db.commit()
+        return True
 
 
 async def get_active_users():
@@ -73,6 +77,12 @@ async def get_game_state(key):
         async with db.execute("SELECT value FROM state WHERE key = ?", (key,)) as cursor:
             row = await cursor.fetchone()
             return row[0] if row else None
+        
+async def delete_user_by_id(user_id):
+    """Удаляет пользователя из базы данных по его user_id."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        await db.execute("DELETE FROM users WHERE user_id = ?", (user_id,))
+        await db.commit()
         
 async def format_active_players():
     users = await get_active_users()

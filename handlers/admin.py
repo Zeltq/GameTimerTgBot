@@ -1,7 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import Message
 from config import ADMIN_ID
-from database import get_user_by_name, set_user_time, deactivate_user, get_all_users, get_active_users
+from database import get_user_by_name, set_user_time, deactivate_user, get_active_users
 
 router = Router()
 

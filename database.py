@@ -106,7 +106,7 @@ async def reset_message_ids():
         await db.execute("UPDATE users SET message_id = NULL WHERE active = 1")
         await db.commit()
 
-async def get_all_users() -> list:
+async def get_all_users():
     """Получить всех пользователей из базы данных"""
     async with aiosqlite.connect(DB_PATH) as db:
         cursor = await db.execute("SELECT * FROM users")

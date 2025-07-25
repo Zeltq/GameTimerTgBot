@@ -14,9 +14,6 @@ async def set_time(msg: Message):
     if len(parts) == 2:
         try:
             users = await get_active_users()
-            print(f'Введено часов: {parts[1]}')
-            print(((float(parts[1])*60)-90-10-10))
-            print(users)
             minutes = ((float(parts[1])*60)-90-10-10)/len(users)
             if not users:
                 return await msg.answer("Нет пользователей в базе данных.")

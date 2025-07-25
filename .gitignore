@@ -1,9 +1,9 @@
 .env
+venv
 data
 
 game.db
 
 __pycache__
 
-config.py
 logginf.conf

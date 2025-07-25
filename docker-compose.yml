@@ -1,0 +1,9 @@
+services:
+  bot:
+    build: .
+    container_name: tg_bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/app/data  # монтируем папку с БД (если SQLite)
+      - ./logs:/app/logs  # логи (опционально)
